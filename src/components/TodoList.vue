@@ -1,119 +1,76 @@
 <template>
-  <div>
-    <header class="header">
-      <div class="header__date">
-        <h1 class="header__date-date">{{ dateNow }}</h1>
-        <h3 class="header__date-active">{{ activeTasks() }}</h3>
-      </div>
+  <div class="todos">
+    <ul class="todos__list">
+      <li
+        v-for="(task, index) of global.state.tasksFiltered"
+        :key="index"
+        :class="{ 'todos__item--finished': task.done }"
+        class="todos__item"
+      >
+        <div class="todos__title-and-btn">
+          <button
+            @click="global.toggleTaskStatus(task)"
+            class="todos__check-btn"
+          >
+            <font-awesome-icon icon="check-circle" />
+          </button>
 
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li
-            @click="global.filterTodos"
-            class="header__nav-item"
-            :class="{
-              'header__nav-item--active': global.state.activeTab === 'all',
-            }"
-          >
-            All Tasks
-          </li>
-          <li
-            @click="global.filterTodos('undone')"
-            class="header__nav-item"
-            :class="{
-              'header__nav-item--active': global.state.activeTab === 'undone',
-            }"
-          >
-            Incomplete Tasks
-          </li>
-          <li
-            @click="global.filterTodos('done')"
-            class="header__nav-item"
-            :class="{
-              'header__nav-item--active': global.state.activeTab === 'done',
-            }"
-          >
-            Complete Tasks
-          </li>
-        </ul>
-      </nav>
-    </header>
+          <p class="todos__text">{{ task.description }}</p>
+        </div>
+        <button @click="global.deleteTask(task)" class="todos__delete-btn">
+          <font-awesome-icon icon="trash-alt" />
+        </button>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   inject: ["global"],
-  setup() {
-    return {};
-  },
-  methods: {
-    activeTasks() {
-      const activeTasks = this.global.state.tasks.filter((task) => !task.done);
-      const activeLength = activeTasks.length;
-      const taskPluralSingular =
-        activeLength > 1 || activeLength < 1 ? "tasks" : "task";
-      return `${activeLength} active ${taskPluralSingular}`;
-    },
-  },
-  computed: {
-    dateNow() {
-      const d = new Date();
-      return `${d.getDate()} / ${d.getMonth() + 1} / ${d.getFullYear()}`;
-    },
+  mounted() {
+    this.global.filterTodos("all");
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-  @media (max-width: 700px) {
-    flex-direction: column;
+.todos {
+  $parent: &;
+  &__list {
+    border-top: 1px solid #7e8187;
   }
-  &__date {
-    &-date {
-      font-size: 20px;
-      margin-bottom: 5px;
-    }
-    &-active {
-      font-size: 13px;
-      color: #61dbfb;
-    }
-    @media (max-width: 768px) {
-      &-active {
-        margin-bottom: 15px;
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #7e8187;
+    &--finished {
+      #{ $parent } {
+        &__check-btn {
+          color: #20bf6b;
+        }
+        &__text {
+          text-decoration: line-through;
+        }
       }
     }
   }
-  &__nav {
-    &-list {
-      display: flex;
-    }
-    &-item {
-      margin: 0 15px;
-      color: #7e8187;
-      cursor: pointer;
-      &--active {
-        color: #d3d4d6;
-      }
-    }
-    @media (max-width: 768px) {
-      &-item {
-        margin-left: 0;
-      }
-    }
-    @media (max-width: 700px) {
-      &-list {
-        flex-direction: column;
-      }
-      &-item {
-        margin-bottom: 12px;
-      }
-    }
+  &__title-and-btn {
+    display: flex;
+  }
+  &__check-btn,
+  &__delete-btn {
+    color: #7e8187;
+    outline: none;
+    cursor: pointer;
+  }
+  // &__check-btn {
+  // }
+  // &__delete-btn {
+  // }
+  &__text {
+    margin-left: 15px;
   }
 }
 </style>

@@ -1,13 +1,11 @@
 <template>
   <div class="todo-main">
-    <Header />
-    <Form />
     <TodoList />
+    <Form />
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header";
 import Form from "@/components/Form";
 import TodoList from "@/components/TodoList";
 import global from "@/global.js";
@@ -16,7 +14,6 @@ export default {
     global,
   },
   components: {
-    Header,
     Form,
     TodoList,
   },
