@@ -1,11 +1,13 @@
 <template>
   <div class="todo-main">
-    <TodoList />
+    <Header />
     <Form />
+    <TodoList />
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header";
 import Form from "@/components/Form";
 import TodoList from "@/components/TodoList";
 import global from "@/global.js";
@@ -14,6 +16,7 @@ export default {
     global,
   },
   components: {
+    Header,
     Form,
     TodoList,
   },
@@ -32,7 +35,8 @@ export default {
   background: transparent;
 }
 body {
-  background-color: #fed330;
+  color: #4a4a4a;
+  background-color: #F5BA43;
   height: 100vh;
   font-size: 16px;
 }
