@@ -1,26 +1,55 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to this Vue.js App"/>
+  <div class="todo-main">
+    <Header />
+    <Form />
+    <TodoList />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Header from "@/components/Header";
+import Form from "@/components/Form";
+import TodoList from "@/components/TodoList";
+import global from "@/global.js";
 export default {
-  name: 'App',
+  provide: {
+    global,
+  },
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Form,
+    TodoList,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  border: 0;
+  background: transparent;
+}
+body {
+  background-color: #fed330;
+  height: 100vh;
+  font-size: 16px;
+}
+.todo-main {
+  width: 900px;
+  max-width: 90%;
+  background-color: #394049;
+  margin: 40px auto;
+  padding: 50px;
+  color: #d3d4d6;
+  border-radius: 5px;
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    padding: 30px;
+  }
 }
 </style>
