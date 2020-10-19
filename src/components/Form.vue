@@ -7,7 +7,7 @@
         class="form__input"
         v-model="todo"
       />
-      <button class="form__button" type="submit">Add task</button>
+      <button class="form__button" type="submit">Hinzufügen</button>
     </form>
   </div>
 </template>

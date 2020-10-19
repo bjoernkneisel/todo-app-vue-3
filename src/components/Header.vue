@@ -15,7 +15,7 @@
               'header__nav-item--active': global.state.activeTab === 'all',
             }"
           >
-            All Tasks
+            Alle Aufgaben
           </li>
           <li
             @click="global.filterTodos('undone')"
@@ -24,7 +24,7 @@
               'header__nav-item--active': global.state.activeTab === 'undone',
             }"
           >
-            Incomplete Tasks
+            Offene Aufgaben
           </li>
           <li
             @click="global.filterTodos('done')"
@@ -33,7 +33,7 @@
               'header__nav-item--active': global.state.activeTab === 'done',
             }"
           >
-            Complete Tasks
+            Erledigte Aufgaben
           </li>
         </ul>
       </nav>
