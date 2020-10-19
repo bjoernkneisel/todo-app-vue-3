@@ -52,8 +52,8 @@ export default {
       const activeTasks = this.global.state.tasks.filter((task) => !task.done);
       const activeLength = activeTasks.length;
       const taskPluralSingular =
-        activeLength > 1 || activeLength < 1 ? "tasks" : "task";
-      return `${activeLength} active ${taskPluralSingular}`;
+        activeLength > 1 || activeLength < 1 ? "Aufgaben" : "Aufgabe";
+      return `${activeLength} aktive ${taskPluralSingular}`;
     },
   },
   computed: {
